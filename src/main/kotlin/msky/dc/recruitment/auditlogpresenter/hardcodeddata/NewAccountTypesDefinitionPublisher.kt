@@ -17,7 +17,7 @@ class NewAccountTypesDefinitionPublisher(private val eventBus: EventBus,
     }
 
     private fun convertToNewAccountTypeDefined(csvLine: String): NewAccountTypeDefined {
-        val newAccountTypeDefinedFields = csvLine.split(",")
+        val newAccountTypeDefinedFields = csvLine.split(",")  // TODO extract and replace with library
 
         val id = newAccountTypeDefinedFields[0]
         val name = newAccountTypeDefinedFields[1]

@@ -5,8 +5,10 @@ import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 class HardcodedDataFacadeConfiguration {
 
     fun hardcodedDataFacade(eventBus: EventBus,
-                            accountTypesFileLocationProvider: FileLocationProvider): HardcodedDataFacade {
+                            accountTypesFileLocationProvider: FileLocationProvider,
+                            customersFileLocationProvider: FileLocationProvider): HardcodedDataFacade {
         return HardcodedDataFacade(
-                NewAccountTypesDefinitionPublisher(eventBus, accountTypesFileLocationProvider))
+                NewAccountTypesDefinitionPublisher(eventBus, accountTypesFileLocationProvider),
+                NewCustomerRegisteredPublisher(eventBus, customersFileLocationProvider))
     }
 }

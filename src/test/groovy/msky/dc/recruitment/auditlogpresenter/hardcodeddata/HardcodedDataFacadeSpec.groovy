@@ -4,16 +4,18 @@ import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 import spock.lang.Specification
 
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewAccountTypeDefinedEvents.SAVING_ACCOUNT_TYPE_DEFINED
+import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewCustomerRegisteredEvents.ANDRZEJ_KOWALSKI_REGISTERED
 
 class HardcodedDataFacadeSpec extends Specification {
 
     EventBus eventBus = Mock()
     FileLocationProvider accountTypesFileLocationProvider = Mock()
+    FileLocationProvider customersFileLocationProvider = Mock()
     HardcodedDataFacade facade
 
     def setup() {
         facade = new HardcodedDataFacadeConfiguration()
-                .hardcodedDataFacade(eventBus, accountTypesFileLocationProvider)
+                .hardcodedDataFacade(eventBus, accountTypesFileLocationProvider, customersFileLocationProvider)
     }
 
     def "produce new account types definitions according to the content of csv file"() {
@@ -29,5 +31,20 @@ class HardcodedDataFacadeSpec extends Specification {
         then: "account type has been converted to new account type definition and published"
             eventBus.publish(_ as NewAccountTypeDefined) >> { NewAccountTypeDefined publishedEvent -> definedAccountType = publishedEvent }
             definedAccountType == SAVING_ACCOUNT_TYPE_DEFINED
+    }
+
+    def "produce new customer registered events based on the content of 'customers.csv'"() {
+        given: "there is a csv file with a row containing customer 'Andrzej Kowalski' "
+            customersFileLocationProvider.getResourcePath() >> "/hardcodeddata/customer_andrzej_kowalski.csv"
+
+        and: "we expect an event informing that new customer has registered"
+            def newCustomerRegistered
+
+        when: "processing of the account types has been triggered"
+            facade.publishCustomersRegistered()
+
+        then: "customer data has been converted to event and published"
+            eventBus.publish(_ as NewCustomerRegistered) >> { NewCustomerRegistered publishedEvent -> newCustomerRegistered = publishedEvent }
+            newCustomerRegistered == ANDRZEJ_KOWALSKI_REGISTERED
     }
 }
