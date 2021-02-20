@@ -3,11 +3,12 @@ package msky.dc.recruitment.auditlogpresenter.hardcodeddata
 import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 
 class NewAccountTypesDefinitionPublisher(private val eventBus: EventBus,
-                                         private val accountTypesFileLocationProvider: FileLocationProvider) {
+                                         private val accountTypesFileLocationProvider: FileLocationProvider,
+                                         private val csvContentReader: CsvContentReader) {
 
     fun publishNewAccountTypesDefinedEvents() {
-        this::class.java.getResourceAsStream(accountTypesFileLocationProvider.getResourcePath())
-                .bufferedReader()
+        val resourcePath = accountTypesFileLocationProvider.getResourcePath()
+        csvContentReader.getCsvHeaderlessContent(resourcePath)
                 .forEachLine { convertToEventAndPublish(it) }
     }
 
@@ -17,7 +18,7 @@ class NewAccountTypesDefinitionPublisher(private val eventBus: EventBus,
     }
 
     private fun convertToNewAccountTypeDefined(csvLine: String): NewAccountTypeDefined {
-        val newAccountTypeDefinedFields = csvLine.split(",")  // TODO extract and replace with library
+        val newAccountTypeDefinedFields = csvLine.split(",")
 
         val id = newAccountTypeDefinedFields[0]
         val name = newAccountTypeDefinedFields[1]

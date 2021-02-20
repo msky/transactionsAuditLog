@@ -3,11 +3,11 @@ package msky.dc.recruitment.auditlogpresenter.hardcodeddata
 import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 
 class NewCustomerRegisteredPublisher(private val eventBus: EventBus,
-                                     private val customersFileLocationProvider: FileLocationProvider) {
+                                     private val customersFileLocationProvider: FileLocationProvider,
+                                     private val csvContentReader: CsvContentReader) {
 
     fun publishNewCustomersRegisteredEvents() {
-        this::class.java.getResourceAsStream(customersFileLocationProvider.getResourcePath())
-                .bufferedReader()
+        csvContentReader.getCsvHeaderlessContent(customersFileLocationProvider.getResourcePath())
                 .forEachLine { convertToEventAndPublish(it) }
     }
 
@@ -17,7 +17,7 @@ class NewCustomerRegisteredPublisher(private val eventBus: EventBus,
     }
 
     private fun convertToNewCustomerRegistered(csvLine: String): NewCustomerRegistered {
-        val newCustomerRegisteredFields = csvLine.split(",") // TODO extract and replace with library
+        val newCustomerRegisteredFields = csvLine.split(",")
 
         val id = newCustomerRegisteredFields[0]
         val firstName = newCustomerRegisteredFields[1]

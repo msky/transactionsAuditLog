@@ -29,7 +29,9 @@ class HardcodedDataFacadeSpec extends Specification {
             facade.publishAccountTypesDefinition()
 
         then: "account type has been converted to new account type definition and published"
-            eventBus.publish(_ as NewAccountTypeDefined) >> { NewAccountTypeDefined publishedEvent -> definedAccountType = publishedEvent }
+            1 * eventBus.publish(_ as NewAccountTypeDefined) >> { NewAccountTypeDefined publishedEvent -> definedAccountType = publishedEvent }
+
+        and: "all values were properly set as event payload"
             definedAccountType == SAVING_ACCOUNT_TYPE_DEFINED
     }
 
@@ -44,7 +46,9 @@ class HardcodedDataFacadeSpec extends Specification {
             facade.publishCustomersRegistered()
 
         then: "customer data has been converted to event and published"
-            eventBus.publish(_ as NewCustomerRegistered) >> { NewCustomerRegistered publishedEvent -> newCustomerRegistered = publishedEvent }
+            1 * eventBus.publish(_ as NewCustomerRegistered) >> { NewCustomerRegistered publishedEvent -> newCustomerRegistered = publishedEvent }
+
+        and: "all values were properly set as event payload"
             newCustomerRegistered == ANDRZEJ_KOWALSKI_REGISTERED
     }
 }
