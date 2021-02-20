@@ -6,11 +6,13 @@ class HardcodedDataFacadeConfiguration {
 
     fun hardcodedDataFacade(eventBus: EventBus,
                             accountTypesFileLocationProvider: FileLocationProvider,
-                            customersFileLocationProvider: FileLocationProvider): HardcodedDataFacade {
+                            customersFileLocationProvider: FileLocationProvider,
+                            transactionsFileLocationProvider: FileLocationProvider): HardcodedDataFacade {
         val csvContentReader = CsvContentReader()
 
         return HardcodedDataFacade(
                 NewAccountTypesDefinitionPublisher(eventBus, accountTypesFileLocationProvider, csvContentReader),
-                NewCustomerRegisteredPublisher(eventBus, customersFileLocationProvider, csvContentReader))
+                NewCustomerRegisteredPublisher(eventBus, customersFileLocationProvider, csvContentReader),
+                NewTransactionCompletedPublisher(eventBus, transactionsFileLocationProvider, csvContentReader))
     }
 }

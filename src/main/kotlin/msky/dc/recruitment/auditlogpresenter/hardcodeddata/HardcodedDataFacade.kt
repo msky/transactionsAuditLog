@@ -1,7 +1,8 @@
 package msky.dc.recruitment.auditlogpresenter.hardcodeddata
 
 class HardcodedDataFacade(private val newAccountTypesDefinedPublisher: NewAccountTypesDefinitionPublisher,
-                          private val newCustomerRegisteredPublisher: NewCustomerRegisteredPublisher) {
+                          private val newCustomerRegisteredPublisher: NewCustomerRegisteredPublisher,
+                          private val newTransactionCompletedPublisher: NewTransactionCompletedPublisher) {
 
     fun publishAccountTypesDefinition() {
         newAccountTypesDefinedPublisher.publishNewAccountTypesDefinedEvents()
@@ -9,5 +10,9 @@ class HardcodedDataFacade(private val newAccountTypesDefinedPublisher: NewAccoun
 
     fun publishCustomersRegistered() {
         newCustomerRegisteredPublisher.publishNewCustomersRegisteredEvents()
+    }
+
+    fun publishTransactions() {
+        newTransactionCompletedPublisher.publishNewTransactionsCompletedEvents()
     }
 }
