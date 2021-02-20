@@ -8,18 +8,16 @@ class NewAccountTypesDefinitionPublisher(private val eventBus: EventBus,
 
     fun publishNewAccountTypesDefinedEvents() {
         val resourcePath = accountTypesFileLocationProvider.getResourcePath()
-        csvContentReader.getCsvHeaderlessContent(resourcePath)
-                .forEachLine { convertToEventAndPublish(it) }
+        csvContentReader.getCsvHeaderlessContentLines(resourcePath)
+                .forEach { convertToEventAndPublish(it) }
     }
 
-    private fun convertToEventAndPublish(csvLine: String) {
-        val newAccountTypeDefined = convertToNewAccountTypeDefined(csvLine)
+    private fun convertToEventAndPublish(csvLineElements: Array<String>) {
+        val newAccountTypeDefined = convertToNewAccountTypeDefined(csvLineElements)
         eventBus.publish(newAccountTypeDefined)
     }
 
-    private fun convertToNewAccountTypeDefined(csvLine: String): NewAccountTypeDefined {
-        val newAccountTypeDefinedFields = csvLine.split(",")
-
+    private fun convertToNewAccountTypeDefined(newAccountTypeDefinedFields: Array<String>): NewAccountTypeDefined {
         val id = newAccountTypeDefinedFields[0]
         val name = newAccountTypeDefinedFields[1]
 

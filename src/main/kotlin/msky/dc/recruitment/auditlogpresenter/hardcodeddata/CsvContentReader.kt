@@ -1,18 +1,24 @@
 package msky.dc.recruitment.auditlogpresenter.hardcodeddata
 
-import java.io.BufferedReader
+import com.opencsv.CSVReader
+import com.opencsv.CSVReaderBuilder
 
 class CsvContentReader {
 
-    fun getCsvHeaderlessContent(resourcePath: String): BufferedReader {
-        val reader = this::class.java.getResourceAsStream(resourcePath)
-                .bufferedReader()
-        skipHeader(reader)
+    fun getCsvHeaderlessContentLines(resourcePath: String): List<Array<String>> {
+        val reader = buildReaderOmittingHeader(resourcePath)
 
-        return reader
+        return reader.readAll().filter { isNotEmpty(it) }
     }
 
-    private fun skipHeader(reader: BufferedReader) {
-        reader.readLine()
+    private fun isNotEmpty(line: Array<String>): Boolean {
+        return line.isNotEmpty() && line.all { it.isNotBlank() }
+    }
+
+    private fun buildReaderOmittingHeader(resourcePath: String): CSVReader {
+        return CSVReaderBuilder(this::class.java.getResourceAsStream(resourcePath)
+                .bufferedReader())
+                .withSkipLines(1)
+                .build()
     }
 }

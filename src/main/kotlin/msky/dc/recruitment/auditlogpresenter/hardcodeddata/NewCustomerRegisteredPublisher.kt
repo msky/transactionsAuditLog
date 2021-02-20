@@ -7,18 +7,16 @@ class NewCustomerRegisteredPublisher(private val eventBus: EventBus,
                                      private val csvContentReader: CsvContentReader) {
 
     fun publishNewCustomersRegisteredEvents() {
-        csvContentReader.getCsvHeaderlessContent(customersFileLocationProvider.getResourcePath())
-                .forEachLine { convertToEventAndPublish(it) }
+        csvContentReader.getCsvHeaderlessContentLines(customersFileLocationProvider.getResourcePath())
+                .forEach { convertToEventAndPublish(it) }
     }
 
-    private fun convertToEventAndPublish(csvLine: String) {
-        val newCustomerRegistered = convertToNewCustomerRegistered(csvLine)
+    private fun convertToEventAndPublish(csvLineElements: Array<String>) {
+        val newCustomerRegistered = convertToNewCustomerRegistered(csvLineElements)
         eventBus.publish(newCustomerRegistered)
     }
 
-    private fun convertToNewCustomerRegistered(csvLine: String): NewCustomerRegistered {
-        val newCustomerRegisteredFields = csvLine.split(",")
-
+    private fun convertToNewCustomerRegistered(newCustomerRegisteredFields: Array<String>): NewCustomerRegistered {
         val id = newCustomerRegisteredFields[0]
         val firstName = newCustomerRegisteredFields[1]
         val lastName = newCustomerRegisteredFields[2]
