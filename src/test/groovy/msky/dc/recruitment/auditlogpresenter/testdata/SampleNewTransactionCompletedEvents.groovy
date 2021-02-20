@@ -13,7 +13,8 @@ class SampleNewTransactionCompletedEvents {
             ANDRZEJ_KOWALSKI_CUSTOMER_ID,
             LocalDateTime.parse("2013-08-04T23:57:38"))
 
-    public static ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_COMPLETED = new NewTransactionCompleted("129",
+    public static ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_COMPLETED = new NewTransactionCompleted(
+            ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_ID,
             new BigDecimal("128.33"),
             SAVING_ACCOUNT_TYPE_ID,
             ANDRZEJ_KOWALSKI_CUSTOMER_ID,

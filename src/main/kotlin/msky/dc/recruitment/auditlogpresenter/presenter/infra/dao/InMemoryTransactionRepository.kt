@@ -8,7 +8,7 @@ class InMemoryTransactionRepository(private val transactions: MutableList<Transa
 
     override fun findAllByAccountTypeId(requestedAccountTypesIds: List<String>): List<Transaction> {
         return transactions.filter {
-            requestedAccountTypesIds.contains(it.accountTypeId())
+            requestedAccountTypesIds.isEmpty() || requestedAccountTypesIds.contains(it.accountTypeId())
         }
     }
 

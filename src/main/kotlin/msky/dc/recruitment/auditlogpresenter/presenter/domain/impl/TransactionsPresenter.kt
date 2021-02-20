@@ -7,5 +7,4 @@ class TransactionsPresenter(private val transactionRepository: TransactionReposi
     fun showTransactions(query: ShowTransactionsQuery): List<Transaction> {
         return transactionRepository.findAllByAccountTypeId(query.requestedAccountTypesIds)
     }
-
 }

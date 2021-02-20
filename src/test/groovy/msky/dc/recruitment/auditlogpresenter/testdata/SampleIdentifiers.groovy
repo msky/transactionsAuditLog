@@ -7,4 +7,5 @@ class SampleIdentifiers {
     public static String ANDRZEJ_KOWALSKI_CUSTOMER_ID = "1"
 
     public static String ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_ID = "100"
+    public static String ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_ID = "222"
 }
