@@ -42,7 +42,7 @@ class HardcodedDataFacadeSpec extends Specification {
         and: "we expect an event informing that new customer has registered"
             def newCustomerRegistered
 
-        when: "processing of the account types has been triggered"
+        when: "processing of the customers has been triggered"
             facade.publishCustomersRegistered()
 
         then: "customer data has been converted to event and published"
