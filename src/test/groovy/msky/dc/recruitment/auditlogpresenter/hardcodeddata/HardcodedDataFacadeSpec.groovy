@@ -35,7 +35,7 @@ class HardcodedDataFacadeSpec extends Specification {
             definedAccountType == SAVING_ACCOUNT_TYPE_DEFINED
     }
 
-    def "produce new customer registered events based on the content of 'customers.csv'"() {
+    def "produce new customer registered events based on the content of csv file"() {
         given: "there is a csv file with a row containing customer 'Andrzej Kowalski' "
             customersFileLocationProvider.getResourcePath() >> "/hardcodeddata/customer_andrzej_kowalski.csv"
 
