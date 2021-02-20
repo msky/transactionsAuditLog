@@ -7,7 +7,7 @@ class CsvContentReader {
 
     fun getCsvHeaderlessContentLines(resourcePath: String): List<Array<String>> {
         val reader = buildReaderOmittingHeader(resourcePath)
-
+        //TODO close
         return reader.readAll().filter { isNotEmpty(it) }
     }
 
