@@ -1,4 +1,4 @@
-package msky.dc.recruitment.auditlogpresenter.hardcodeddata
+package msky.dc.recruitment.auditlogpresenter.hardcodeddata.impl
 
 import com.opencsv.CSVReader
 import com.opencsv.CSVReaderBuilder

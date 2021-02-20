@@ -1,5 +1,6 @@
-package msky.dc.recruitment.auditlogpresenter.hardcodeddata
+package msky.dc.recruitment.auditlogpresenter.hardcodeddata.impl
 
+import msky.dc.recruitment.auditlogpresenter.hardcodeddata.NewTransactionCompleted
 import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 import java.math.BigDecimal
 import java.time.LocalDateTime

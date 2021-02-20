@@ -1,5 +1,6 @@
 package msky.dc.recruitment.auditlogpresenter.hardcodeddata
 
+import msky.dc.recruitment.auditlogpresenter.hardcodeddata.impl.FileLocationProvider
 import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 import spock.lang.Specification
 

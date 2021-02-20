@@ -1,5 +1,6 @@
-package msky.dc.recruitment.auditlogpresenter.hardcodeddata
+package msky.dc.recruitment.auditlogpresenter.hardcodeddata.impl
 
+import msky.dc.recruitment.auditlogpresenter.hardcodeddata.NewAccountTypeDefined
 import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 
 class NewAccountTypesDefinitionPublisher(private val eventBus: EventBus,

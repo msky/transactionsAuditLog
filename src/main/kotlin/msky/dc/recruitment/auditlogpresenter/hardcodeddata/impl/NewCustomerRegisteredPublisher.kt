@@ -1,5 +1,6 @@
-package msky.dc.recruitment.auditlogpresenter.hardcodeddata
+package msky.dc.recruitment.auditlogpresenter.hardcodeddata.impl
 
+import msky.dc.recruitment.auditlogpresenter.hardcodeddata.NewCustomerRegistered
 import msky.dc.recruitment.auditlogpresenter.shared.EventBus
 
 class NewCustomerRegisteredPublisher(private val eventBus: EventBus,
