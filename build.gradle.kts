@@ -38,6 +38,7 @@ dependencies {
     implementation("org.codehaus.groovy:groovy:3.0.7")
     testImplementation(platform("org.spockframework:spock-bom:2.0-M4-groovy-3.0"))
     testImplementation("org.spockframework:spock-core")
+    testImplementation("org.spockframework:spock-spring")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     testImplementation("org.springframework.security:spring-security-test")
