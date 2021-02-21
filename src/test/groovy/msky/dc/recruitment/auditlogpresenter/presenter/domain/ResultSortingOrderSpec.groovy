@@ -1,7 +1,7 @@
 package msky.dc.recruitment.auditlogpresenter.presenter.domain
 
 import msky.dc.recruitment.auditlogpresenter.presenter.infra.dao.InMemoryAccountTypeRepository
-import msky.dc.recruitment.auditlogpresenter.presenter.infra.dao.InMemoryCustomerRepository
+import msky.dc.recruitment.auditlogpresenter.presenter.infra.dao.customers.InMemoryCustomerRepository
 import msky.dc.recruitment.auditlogpresenter.presenter.infra.dao.transactions.InMemoryTransactionRepository
 import spock.lang.Specification
 

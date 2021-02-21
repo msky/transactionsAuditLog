@@ -1,4 +1,6 @@
 package msky.dc.recruitment.auditlogpresenter.presenter.domain.impl
 
-data class Customer(val id: String, val firstName: String, val lastName: String) {
+import org.springframework.data.annotation.Id
+
+data class Customer(@Id val id: String, val firstName: String, val lastName: String) {
 }
