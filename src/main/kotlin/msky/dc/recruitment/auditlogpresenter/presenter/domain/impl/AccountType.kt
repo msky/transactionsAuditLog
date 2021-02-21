@@ -1,4 +1,6 @@
 package msky.dc.recruitment.auditlogpresenter.presenter.domain.impl
 
-data class AccountType(val id: String, val name: String) {
+import org.springframework.data.annotation.Id
+
+data class AccountType(@Id val id: String, val name: String) {
 }
