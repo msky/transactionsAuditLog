@@ -32,8 +32,7 @@ class TransactionsAuditLogControllerTest extends Specification {
             queryParameters.put("customer_id", [customer_id_queryParam])
             queryParameters.put("account_type", [account_type_queryParam])
 
-            def response = mvc.perform(get("/api/v1/auditLog/").queryParams(queryParameters))
-
+            def response = mvc.perform(get("/v1/auditlog").queryParams(queryParameters))
         then: "transactions are properly deserialized and returned"
             response.andExpect(status().isOk()) //TODO verify deserialization
 

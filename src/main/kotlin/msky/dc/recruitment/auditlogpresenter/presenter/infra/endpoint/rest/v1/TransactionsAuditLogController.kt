@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1/auditLog")
+@RequestMapping("/v1/auditlog")
 class TransactionsAuditLogController(@Autowired private val auditLogPresenterFacade: AuditLogPresenterFacade) {
 
-    @GetMapping("/")
+    @GetMapping
     fun getTransactionsWithDetails(
             @RequestParam(value = "account_type", required = false, defaultValue = "ALL") commaSeparatedAccountTypesIds: String,
             @RequestParam(value = "customer_id", required = false, defaultValue = "ALL") commaSeparatedCustomersId: String)
