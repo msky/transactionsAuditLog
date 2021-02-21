@@ -4,6 +4,7 @@ import msky.dc.recruitment.auditlogpresenter.presenter.domain.AuditLogPresenterF
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.util.LinkedMultiValueMap
 import spock.lang.Specification
@@ -23,6 +24,7 @@ class TransactionsAuditLogControllerSpec extends Specification {
     @Autowired
     MockMvc mvc
 
+    @WithMockUser
     def "query parameters should be correctly mapped to query object and passed to facade"() {
         given: "facade returns proper transactions based on the query"
             auditLogFacade.showTransactions(expectedQuery) >> expectedTransactionsLog
