@@ -8,4 +8,7 @@ class SampleIdentifiers {
 
     public static String ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_ID = "100"
     public static String ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_ID = "222"
+
+    public static String ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_ID = "333"
+    public static String ANDRZEJ_KOWALSKI_100_UNITS_AMOUNT_TRANSACTION_ID = "444"
 }

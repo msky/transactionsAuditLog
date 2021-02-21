@@ -5,7 +5,7 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 
 class Transaction(private val transactionId: String,
-                  private val transactionAmount: BigDecimal,
+                  val transactionAmount: BigDecimal,
                   private val transactionDate: LocalDateTime,
                   private val accountType: AccountType,
                   private val customer: Customer) {

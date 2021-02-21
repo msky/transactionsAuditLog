@@ -6,10 +6,10 @@ import java.util.Collections.synchronizedList
 
 class InMemoryTransactionRepository(private val transactions: MutableList<Transaction> = synchronizedList(ArrayList())) : TransactionRepository {
 
-    override fun findAllByAccountTypeId(requestedAccountTypesIds: List<String>): List<Transaction> {
+    override fun findAllByAccountTypeIdOrderByTransactionAmountAsc(requestedAccountTypesIds: List<String>): List<Transaction> {
         return transactions.filter {
             requestedAccountTypesIds.isEmpty() || requestedAccountTypesIds.contains(it.accountTypeId())
-        }
+        }.sortedBy { it.transactionAmount }
     }
 
     override fun save(transaction: Transaction) {

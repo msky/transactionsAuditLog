@@ -26,4 +26,18 @@ class SampleNewTransactionCompletedEvents {
             CURRENCY_ACCOUNT_TYPE_ID,
             ANDRZEJ_KOWALSKI_CUSTOMER_ID,
             LocalDateTime.parse("2013-08-04T23:57:38"))
+
+    public static ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_COMPLETED = new NewTransactionCompleted(
+            ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_ID,
+            new BigDecimal("10"),
+            CURRENCY_ACCOUNT_TYPE_ID,
+            ANDRZEJ_KOWALSKI_CUSTOMER_ID,
+            LocalDateTime.parse("2013-08-04T23:57:38"))
+
+    public static ANDRZEJ_KOWALSKI_100_UNITS_AMOUNT_TRANSACTION_COMPLETED = new NewTransactionCompleted(
+            ANDRZEJ_KOWALSKI_100_UNITS_AMOUNT_TRANSACTION_ID,
+            new BigDecimal("100"),
+            CURRENCY_ACCOUNT_TYPE_ID,
+            ANDRZEJ_KOWALSKI_CUSTOMER_ID,
+            LocalDateTime.parse("2015-01-01T13:17:55"))
 }

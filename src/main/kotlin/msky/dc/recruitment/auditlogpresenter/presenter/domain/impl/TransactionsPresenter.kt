@@ -5,6 +5,6 @@ import msky.dc.recruitment.auditlogpresenter.presenter.domain.ShowTransactionsQu
 class TransactionsPresenter(private val transactionRepository: TransactionRepository) {
 
     fun showTransactions(query: ShowTransactionsQuery): List<Transaction> {
-        return transactionRepository.findAllByAccountTypeId(query.requestedAccountTypesIds)
+        return transactionRepository.findAllByAccountTypeIdOrderByTransactionAmountAsc(query.requestedAccountTypesIds)
     }
 }
