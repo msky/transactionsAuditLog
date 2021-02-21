@@ -62,7 +62,7 @@ class QueryByAccountTypeSpec extends Specification {
             def transactionLog = facade.showTransactions(SHOW_TRANSACTIONS_WITH_ANY_ACCOUNT_TYPE)
 
         then: "we see all transactions"
-            transactionLog.transactions == [ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_VIEW,
-                                            ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_VIEW]
+            transactionLog.transactions == [ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_VIEW,
+                                            ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_VIEW]
     }
 }
