@@ -5,8 +5,24 @@ data class ShowTransactionsQuery private constructor(val requestedAccountTypesId
 
     companion object Factory {
         fun from(commaSeparatedAccountTypesIds: String,
-                 commaSeparatedCustomersIds: String): ShowTransactionsQuery =
-                ShowTransactionsQuery(commaSeparatedAccountTypesIds.split(","),
-                        commaSeparatedCustomersIds.split(","))
+                 commaSeparatedCustomersIds: String): ShowTransactionsQuery {
+
+            val requestedAccountTypesIds = resolveRequiredIds(commaSeparatedAccountTypesIds)
+            val requestedCustomerIds = resolveRequiredIds(commaSeparatedCustomersIds)
+
+            return ShowTransactionsQuery(requestedAccountTypesIds,
+                    requestedCustomerIds)
+        }
+
+        private fun resolveRequiredIds(commaSeparatedIds: String): List<String> {
+            return if (isFilterIrrelevant(commaSeparatedIds)) {
+                emptyList()
+            } else {
+                commaSeparatedIds.split(",")
+            }
+        }
+
+        private fun isFilterIrrelevant(requestedIds: String): Boolean =
+                "ALL" == requestedIds
     }
 }

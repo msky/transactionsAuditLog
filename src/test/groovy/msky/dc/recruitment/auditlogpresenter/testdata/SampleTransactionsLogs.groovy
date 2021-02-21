@@ -14,4 +14,11 @@ class SampleTransactionsLogs {
                             JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_VIEW
                     ]
             )
+
+    public static TransactionsLogDto JAN_NOWAK_SAVING_ACCOUNT_TRANSACTIONS =
+            new TransactionsLogDto(
+                    [
+                            JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_VIEW
+                    ]
+            )
 }
