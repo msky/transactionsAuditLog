@@ -40,4 +40,11 @@ class SampleNewTransactionCompletedEvents {
             CURRENCY_ACCOUNT_TYPE_ID,
             ANDRZEJ_KOWALSKI_CUSTOMER_ID,
             LocalDateTime.parse("2015-01-01T13:17:55"))
+
+    public static JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_COMPLETED = new NewTransactionCompleted(
+            JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_ID,
+            new BigDecimal("998.33"),
+            SAVING_ACCOUNT_TYPE_ID,
+            JAN_NOWAK_CUSTOMER_ID,
+            LocalDateTime.parse("2020-12-04T03:57:38"))
 }

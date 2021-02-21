@@ -22,7 +22,8 @@ class TransactionProjectionBuilder(private val customerRepository: CustomerRepos
                 newTransactionCompleted.transactionDate,
                 Transaction.AccountType(accountType.id,
                         accountType.name),
-                Transaction.Customer(customer.firstName,
+                Transaction.Customer(customer.id,
+                        customer.firstName,
                         customer.lastName)
         )
     }

@@ -20,9 +20,13 @@ class Transaction(private val transactionId: String,
         return accountType.id
     }
 
+    fun customerId(): String {
+        return customer.id
+    }
+
     class AccountType(val id: String, val name: String) {
     }
 
-    class Customer(val firstName: String, val lastName: String) {
+    class Customer(val id: String, val firstName: String, val lastName: String) {
     }
 }
