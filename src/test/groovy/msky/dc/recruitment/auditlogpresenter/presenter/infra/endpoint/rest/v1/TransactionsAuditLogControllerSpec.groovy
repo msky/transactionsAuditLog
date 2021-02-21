@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @WebMvcTest(TransactionsAuditLogController)
-class TransactionsAuditLogControllerTest extends Specification {
+class TransactionsAuditLogControllerSpec extends Specification {
 
     @SpringBean
     AuditLogPresenterFacade auditLogFacade = Mock()
@@ -33,6 +33,7 @@ class TransactionsAuditLogControllerTest extends Specification {
             queryParameters.put("account_type", [account_type_queryParam])
 
             def response = mvc.perform(get("/v1/auditlog").queryParams(queryParameters))
+
         then: "transactions are properly deserialized and returned"
             response.andExpect(status().isOk()) //TODO verify deserialization
 
