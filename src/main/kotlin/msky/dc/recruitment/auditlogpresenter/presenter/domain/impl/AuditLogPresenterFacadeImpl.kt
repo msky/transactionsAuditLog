@@ -10,12 +10,12 @@ import msky.dc.recruitment.auditlogpresenter.presenter.domain.TransactionsLogDto
 class AuditLogPresenterFacadeImpl(private val customerRepository: CustomerRepository,
                                   private val accountTypeRepository: AccountTypeRepository,
                                   private val transactionProjectionBuilder: TransactionProjectionBuilder,
-                                  private val transactionsPresenter: TransactionsPresenter)
+                                  private val transactionRepository: TransactionRepository)
     : AuditLogPresenterFacade {
 
     override fun showTransactions(query: ShowTransactionsQuery): TransactionsLogDto {
-        return TransactionsLogDto(transactionsPresenter
-                .showTransactions(query)
+        return TransactionsLogDto(transactionRepository
+                .findTransactionsByQueryOrderByAmountAsc(query)
                 .map { it.toDto() }
         )
     }

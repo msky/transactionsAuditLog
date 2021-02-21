@@ -1,8 +1,9 @@
 package msky.dc.recruitment.auditlogpresenter.presenter.domain.impl
 
+import msky.dc.recruitment.auditlogpresenter.presenter.domain.ShowTransactionsQuery
+
 interface TransactionRepository {
-    fun findAllByAccountTypeIdInAndCustomerIdInOrderByTransactionAmountAsc(requestedAccountTypesIds: List<String>,
-                                                                           customersIds: List<String>): List<Transaction>
+    fun findTransactionsByQueryOrderByAmountAsc(query: ShowTransactionsQuery): List<Transaction>
 
     fun save(transaction: Transaction)
 }

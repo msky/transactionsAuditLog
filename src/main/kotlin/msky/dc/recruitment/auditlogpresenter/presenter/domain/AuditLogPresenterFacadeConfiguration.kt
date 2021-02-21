@@ -13,6 +13,6 @@ class AuditLogPresenterFacadeConfiguration {
                                 accountTypeRepository: AccountTypeRepository): AuditLogPresenterFacade {
         return AuditLogPresenterFacadeImpl(customerRepository, accountTypeRepository,
                 TransactionProjectionBuilder(customerRepository, accountTypeRepository, transactionRepository),
-                TransactionsPresenter(transactionRepository))
+                transactionRepository)
     }
 }
