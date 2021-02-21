@@ -11,7 +11,7 @@ import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewCustomerRe
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewTransactionCompletedEvents.ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_COMPLETED
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewTransactionCompletedEvents.ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_COMPLETED
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_ALL_TRANSACTIONS_ON_CURRENCY_ACCOUNTS_QUERY
-import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_TRANSACTIONS_WITH_ANY_ACCOUNT_TYPE
+import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_ALL_TRANSACTIONS
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleTransactionsDtos.ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_VIEW
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleTransactionsDtos.ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_VIEW
 
@@ -59,7 +59,7 @@ class QueryByAccountTypeSpec extends Specification {
             facade.handle(ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_COMPLETED)
 
         when: "we ask for transactions without specifying account type"
-            def transactionLog = facade.showTransactions(SHOW_TRANSACTIONS_WITH_ANY_ACCOUNT_TYPE)
+            def transactionLog = facade.showTransactions(SHOW_ALL_TRANSACTIONS)
 
         then: "we see all transactions"
             transactionLog.transactions == [ANDRZEJ_KOWALSKI_CURRENCY_ACCOUNT_TRANSACTION_VIEW,

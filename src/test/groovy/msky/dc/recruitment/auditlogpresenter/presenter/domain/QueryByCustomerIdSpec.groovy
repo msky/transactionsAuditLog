@@ -11,6 +11,8 @@ import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewCustomerRe
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewTransactionCompletedEvents.ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_COMPLETED
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewTransactionCompletedEvents.JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_COMPLETED
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_ALL_JAN_NOWAK_TRANSACTIONS
+import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_ALL_TRANSACTIONS
+import static msky.dc.recruitment.auditlogpresenter.testdata.SampleTransactionsDtos.ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_VIEW
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleTransactionsDtos.JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_VIEW
 
 class QueryByCustomerIdSpec extends Specification {
@@ -42,6 +44,25 @@ class QueryByCustomerIdSpec extends Specification {
 
         then: "we see only transaction performed by Jan Nowak"
             transactionLog.transactions == [JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_VIEW]
+    }
+
+    def "query without specified customerId shows transactions performed by all customers"() {
+        given: "saving account type has been created"
+            facade.handle(SAVING_ACCOUNT_TYPE_DEFINED)
+
+        and: "andrzej kowalski and jan nowak have registered"
+            facade.handle(ANDRZEJ_KOWALSKI_REGISTERED)
+            facade.handle(JAN_NOWAK_REGISTERED)
+
+        and: "both the customers has made some transactions"
+            facade.handle(ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_COMPLETED)
+            facade.handle(JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_COMPLETED)
+
+        when: "we ask for transactions without specifying customer"
+            def transactionLog = facade.showTransactions(SHOW_ALL_TRANSACTIONS)
+
+        then: "we see all transactions"
+            transactionLog.transactions == [ANDRZEJ_KOWALSKI_SAVING_ACCOUNT_TRANSACTION_VIEW, JAN_NOWAK_SAVING_ACCOUNT_TRANSACTION_VIEW]
     }
 
 }

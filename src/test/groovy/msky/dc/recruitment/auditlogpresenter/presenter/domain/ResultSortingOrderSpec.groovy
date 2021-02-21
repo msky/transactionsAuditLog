@@ -10,7 +10,7 @@ import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewAccountTyp
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewCustomerRegisteredEvents.ANDRZEJ_KOWALSKI_REGISTERED
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewTransactionCompletedEvents.ANDRZEJ_KOWALSKI_100_UNITS_AMOUNT_TRANSACTION_COMPLETED
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleNewTransactionCompletedEvents.ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_COMPLETED
-import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_TRANSACTIONS_WITH_ANY_ACCOUNT_TYPE
+import static msky.dc.recruitment.auditlogpresenter.testdata.SampleShowTransactionsQueries.SHOW_ALL_TRANSACTIONS
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleTransactionsDtos.ANDRZEJ_KOWALSKI_100_UNITS_AMOUNT_TRANSACTION_VIEW
 import static msky.dc.recruitment.auditlogpresenter.testdata.SampleTransactionsDtos.ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_VIEW
 
@@ -38,7 +38,7 @@ class ResultSortingOrderSpec extends Specification {
             facade.handle(ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_COMPLETED)
 
         when: "we ask for transactions without specifying account type"
-            def transactionLog = facade.showTransactions(SHOW_TRANSACTIONS_WITH_ANY_ACCOUNT_TYPE)
+            def transactionLog = facade.showTransactions(SHOW_ALL_TRANSACTIONS)
 
         then: "transactions are sorted ascending by amount"
             transactionLog.transactions == [ANDRZEJ_KOWALSKI_10_UNITS_AMOUNT_TRANSACTION_VIEW,
